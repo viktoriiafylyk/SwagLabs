@@ -2,8 +2,8 @@ package com.swaglabs.page;
 
 import org.openqa.selenium.WebDriver;
 
-public class CheckoutPage extends BasePage {
-    public CheckoutPage(WebDriver driver) {
+public class CheckoutInfoPage extends BasePage {
+    public CheckoutInfoPage(WebDriver driver) {
         super(driver);
     }
 }
