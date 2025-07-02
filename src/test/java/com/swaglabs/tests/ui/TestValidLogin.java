@@ -7,6 +7,10 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertTrue;
 
 public class TestValidLogin extends BaseTestRunner {
+    @Override
+    protected boolean shouldLoginBeforeTest() {
+        return false;
+    }
 
     @Test
     public void testSuccessfulLogin() {

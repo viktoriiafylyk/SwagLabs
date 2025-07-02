@@ -1,5 +1,7 @@
 package com.swaglabs.tests.ui.testrunners;
 
+import com.swaglabs.page.InventoryPage;
+import com.swaglabs.page.LoginPage;
 import com.swaglabs.tests.utils.LocalStorageJS;
 import com.swaglabs.tests.utils.TestValueProvider;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -11,10 +13,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.ITestContext;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,6 +26,8 @@ public class BaseTestRunner {
     protected static LocalStorageJS localStorageJS;
     protected static WebDriver driver;
     protected static TestValueProvider testValueProvider;
+
+    protected InventoryPage inventoryPage;
 
     @BeforeSuite
     public void beforeSuite() {
@@ -63,6 +64,22 @@ public class BaseTestRunner {
         localStorageJS = new LocalStorageJS(driver);
     }
 
+    protected boolean shouldLoginBeforeTest() {
+        return true;
+    }
+
+    @BeforeMethod
+    public void beforeEachTest() {
+        if (shouldLoginBeforeTest()) {
+            driver.get(testValueProvider.getBaseUIUrl());
+
+            String username = testValueProvider.getUserEmail();
+            String password = testValueProvider.getUserName();
+
+            LoginPage loginPage = new LoginPage(driver);
+            inventoryPage = loginPage.login(username, password);
+        }
+    }
 
 
     @BeforeClass
@@ -110,5 +127,5 @@ public class BaseTestRunner {
         return result;
     }
 
-    
+
 }
