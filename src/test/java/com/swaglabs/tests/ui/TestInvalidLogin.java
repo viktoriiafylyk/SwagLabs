@@ -35,5 +35,7 @@ public class TestInvalidLogin extends BaseTestRunner {
         softAssert.assertTrue(loginPage.getErrorMessageText().contains("Epic sadface: Username and password do not match any user in this service"));
         softAssert.assertTrue(driver.getCurrentUrl().contains("saucedemo.com"),
                 "User should remain on login page after invalid login");
+
+        softAssert.assertAll();
     }
 }
