@@ -3,14 +3,15 @@ package com.swaglabs.page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 public class InventoryPage extends BasePage {
-
-    private final By googleDialogOkButton = By.xpath("//button[contains(text(), 'OK')");
     private final By inventoryContainer = By.id("inventory_container");
     private final By productItems = By.className("inventory_item");
     private final By sortContainer = By.className("product_sort_container");

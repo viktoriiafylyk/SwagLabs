@@ -5,18 +5,18 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class FooterComponent extends BaseComponent {
-
-    private final By twitterLink = By.cssSelector("a[href*='twitter.com']");
-    //*[@id="page_wrapper"]/footer/ul/li[1]/a
-    //a[normalize-space()='Twitter']
-    // a[href='https://twitter.com/saucelabs']
-    private final By facebookLink = By.cssSelector("a[href*='facebook.com']");
-    private final By linkedinLink = By.cssSelector("a[href*='linkedin.com']");
+    private final By twitterLink = By.cssSelector("a[href='https://twitter.com/saucelabs']");
+    private final By facebookLink = By.cssSelector("a[href='https://www.facebook.com/saucelabs']");
+    private final By linkedinLink = By.cssSelector("a[href='https://www.linkedin.com/company/sauce-labs/']");
     private final By copyright = By.className("footer_copy");
-    //div[@class='footer_copy']
+    public static final String COPYRIGHT_TEXT = "© 2025 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy";
 
     public FooterComponent(WebDriver driver, WebElement rootElement) {
         super(driver, rootElement);
+    }
+
+    public boolean isDisplayed() {
+        return rootElement.isDisplayed();
     }
 
     public void clickTwitter() {
@@ -46,4 +46,14 @@ public class FooterComponent extends BaseComponent {
     public boolean isLinkedInLinkDisplayed() {
         return rootElement.findElement(linkedinLink).isDisplayed();
     }
+
+    public void switchToNewTab(String originalTab) {
+        for (String handle : driver.getWindowHandles()) {
+            if (!handle.equals(originalTab)) {
+                driver.switchTo().window(handle);
+                break;
+            }
+        }
+    }
+
 }
