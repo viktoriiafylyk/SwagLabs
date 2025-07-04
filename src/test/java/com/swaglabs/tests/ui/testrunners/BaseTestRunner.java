@@ -19,6 +19,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class BaseTestRunner {
@@ -39,6 +41,13 @@ public class BaseTestRunner {
     @Step("init ChromeDriver")
     public void initDriver() {
         ChromeOptions options = new ChromeOptions();
+        Map<String, Object> prefs = new HashMap<>();
+        prefs.put("credentials_enable_service", false);
+        prefs.put("profile.password_manager_enabled", false);
+        options.setExperimentalOption("prefs", prefs);
+        options.addArguments("--disable-infobars");
+        options.addArguments("--disable-features=PasswordManagerOnboarding,PasswordImport,AutofillServerCommunication,AutofillEnableAccountWalletStorage,OptimizationGuideModelDownloading");
+
 
         String chromeOptionsArg = System.getProperty("chrome.options", "");
         if (!chromeOptionsArg.isEmpty()) {
