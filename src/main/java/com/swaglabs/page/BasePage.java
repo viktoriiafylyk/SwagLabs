@@ -19,7 +19,7 @@ import java.util.Objects;
 
 public abstract class BasePage extends Base {
     @Getter
-    @FindBy(xpath = "//div[@id='app']/ul")
+    @FindBy(xpath = "//div[@class='app_logo']")
     private WebElement headerRoot;
     @Getter
     @FindBy(xpath = "//footer[@class='footer']")

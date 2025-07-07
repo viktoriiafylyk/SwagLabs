@@ -93,4 +93,17 @@ public class InventoryPage extends BasePage {
         return prices.equals(sorted);
     }
 
+    public void addProductsToCart(int numberOfProducts) {
+        List<WebElement> items = driver.findElements(By.className("inventory_item"));
+        int count = 0;
+        for (WebElement item : items) {
+            if (count >= numberOfProducts) break;
+            WebElement addButton = item.findElement(By.tagName("button"));
+            if (addButton.getText().equals("Add to cart")) {
+                addButton.click();
+                count++;
+            }
+        }
+    }
+
 }
