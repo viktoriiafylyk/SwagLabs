@@ -1,5 +1,6 @@
 package com.swaglabs.page;
 
+import com.swaglabs.component.InventoryItemComponent;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,6 +16,8 @@ public class InventoryPage extends BasePage {
     private final By inventoryContainer = By.id("inventory_container");
     private final By productItems = By.className("inventory_item");
     private final By sortContainer = By.className("product_sort_container");
+
+    private final By removeFromCartButton = By.cssSelector("button[data-test^='remove']");
 
     private final By productName = By.className("inventory_item_name");
     private final By productPrice = By.className("inventory_item_price");
@@ -101,9 +104,22 @@ public class InventoryPage extends BasePage {
             WebElement addButton = item.findElement(By.tagName("button"));
             if (addButton.getText().equals("Add to cart")) {
                 addButton.click();
+                new WebDriverWait(driver, Duration.ofSeconds(0, 5));
                 count++;
             }
         }
     }
 
+    public List<InventoryItemComponent> getAllInventoryItems() {
+        List<WebElement> items = driver.findElements(By.className("inventory_item"));
+        List<InventoryItemComponent> components = new ArrayList<>();
+        for (WebElement item : items) {
+            components.add(new InventoryItemComponent(driver, item));
+        }
+        return components;
+    }
+
+    public void clickRemoveFromCart(int numberOfProducts) {
+        driver.findElement(removeFromCartButton).click();
+    }
 }
