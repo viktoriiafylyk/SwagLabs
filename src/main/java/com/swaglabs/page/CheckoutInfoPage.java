@@ -7,7 +7,7 @@ public class CheckoutInfoPage extends BasePage {
     private final By firstNameInput = By.id("first-name");
     private final By lastNameInput = By.id("last-name");
     private final By postalCodeInput = By.id("postal-code");
-    private final By continueButton = By.id("continue");
+    private final By continueButton = By.cssSelector("#continue");
     private final By errorMessage = By.cssSelector("h3[data-test='error']");
 
     public CheckoutInfoPage(WebDriver driver) {
@@ -24,10 +24,6 @@ public class CheckoutInfoPage extends BasePage {
         driver.findElement(postalCodeInput).clear();
         driver.findElement(postalCodeInput).sendKeys(postalCode);
 
-        driver.findElement(continueButton).click();
     }
 
-    public String getErrorMessage() {
-        return driver.findElement(errorMessage).getText().trim();
-    }
 }

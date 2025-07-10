@@ -27,6 +27,7 @@ public class TestInvalidCheckoutForm extends BaseTestRunner {
         CheckoutInfoPage checkoutPage = cartPage.clickCheckoutButton();
 
         checkoutPage.fillFormAndSubmit(firstName.trim(), lastName.trim(), postalCode.trim());
+        checkoutPage.clickContinue();
         String error = checkoutPage.getErrorMessage();
 
         if (firstName.trim().isEmpty()) {
