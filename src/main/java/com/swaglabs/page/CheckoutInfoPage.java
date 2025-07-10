@@ -30,7 +30,8 @@ public class CheckoutInfoPage extends BasePage {
         return driver.findElement(errorMessage).getText().trim();
     }
 
-    public void clickContinue (){
+    public CheckoutOverviewPage clickContinue (){
         driver.findElement(continueButton).click();
+        return new CheckoutOverviewPage(driver);
     }
 }
