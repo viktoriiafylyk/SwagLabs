@@ -26,4 +26,11 @@ public class CheckoutInfoPage extends BasePage {
 
     }
 
+    public String getErrorMessage() {
+        return driver.findElement(errorMessage).getText().trim();
+    }
+
+    public void clickContinue (){
+        driver.findElement(continueButton).click();
+    }
 }
