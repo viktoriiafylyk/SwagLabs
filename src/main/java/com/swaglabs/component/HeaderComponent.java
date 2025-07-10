@@ -13,7 +13,7 @@ public class HeaderComponent extends BaseComponent {
 
     private final By burgerButton = By.xpath("//*[@id='react-burger-menu-btn']");
 
-    private final By cartButton = By.xpath("//a[@class='shopping_cart_link']");
+    private final By cartButton = By.cssSelector(".shopping_cart_link");
 
     private final By cartCounter = By.xpath("//span[@class='shopping_cart_badge']");
 

@@ -119,6 +119,13 @@ public class InventoryPage extends BasePage {
         return components;
     }
 
+    public void removeAllProductsFromCart() {
+        List<WebElement> removeButtons = driver.findElements(By.cssSelector("button[data-test^='remove']"));
+        for (WebElement btn : removeButtons) {
+            btn.click();
+        }
+    }
+
     public void clickRemoveFromCart(int numberOfProducts) {
         driver.findElement(removeFromCartButton).click();
     }
