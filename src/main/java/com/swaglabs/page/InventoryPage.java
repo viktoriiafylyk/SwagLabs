@@ -1,6 +1,8 @@
 package com.swaglabs.page;
 
 import com.swaglabs.component.InventoryItemComponent;
+import com.swaglabs.component.SortingComponent;
+import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,8 +24,12 @@ public class InventoryPage extends BasePage {
     private final By productName = By.className("inventory_item_name");
     private final By productPrice = By.className("inventory_item_price");
 
+    @Getter
+    private SortingComponent sortingComponent;
+
     public InventoryPage(WebDriver driver) {
         super(driver);
+        this.sortingComponent = new SortingComponent(driver, driver.findElement(By.className("header_secondary_container")));
     }
 
     public boolean isOnInventoryPage() {
@@ -38,16 +44,6 @@ public class InventoryPage extends BasePage {
     public void clickOnSortComponent() {
         driver.findElement(sortContainer).click();
     }
-
-    public void chooseAnOption(String visibleText) {
-        WebElement dropdown = driver.findElement(sortContainer);
-        List<WebElement> options = dropdown.findElements(By.tagName("option"));
-        options.stream()
-                .filter(option -> option.getText().equals(visibleText))
-                .findFirst()
-                .ifPresent(WebElement::click);
-    }
-
 
     public List<String> getProductNames() {
         List<WebElement> nameElements = driver.findElements(productName);

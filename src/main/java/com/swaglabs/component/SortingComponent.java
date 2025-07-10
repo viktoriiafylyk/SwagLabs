@@ -8,7 +8,6 @@ import org.openqa.selenium.support.ui.Select;
 public class SortingComponent extends BaseComponent {
 
     private final By dropdownSelect = By.className("product_sort_container");
-    //select[@class='product_sort_container']
 
     public SortingComponent(WebDriver driver, WebElement rootElement) {
         super(driver, rootElement);
@@ -35,7 +34,4 @@ public class SortingComponent extends BaseComponent {
         getSelect().selectByVisibleText("Price (high to low)");
     }
 
-    public String getSelectedOptionText() {
-        return getSelect().getFirstSelectedOption().getText();
-    }
 }

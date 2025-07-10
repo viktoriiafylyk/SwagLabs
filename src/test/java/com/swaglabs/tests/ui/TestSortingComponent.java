@@ -1,5 +1,6 @@
 package com.swaglabs.tests.ui;
 
+import com.swaglabs.component.SortingComponent;
 import com.swaglabs.tests.ui.testrunners.BaseTestRunner;
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
@@ -17,18 +18,19 @@ public class TestSortingComponent extends BaseTestRunner {
 
     public void testProductSorting() {
         SoftAssert softAssert = new SoftAssert();
-
         inventoryPage.clickOnSortComponent();
-        inventoryPage.chooseAnOption("Name (Z to A)");
+        SortingComponent sorting = inventoryPage.getSortingComponent();
+
+        sorting.sortByNameDesc();
         softAssert.assertTrue(inventoryPage.isSortedAlphabeticallyDescending(), "Name Z to A failed");
 
-        inventoryPage.chooseAnOption("Price (low to high)");
+        sorting.sortByPriceLowToHigh();
         softAssert.assertTrue(inventoryPage.isSortedByPriceAscending(), "Price low to high failed");
 
-        inventoryPage.chooseAnOption("Price (high to low)");
+        sorting.sortByPriceHighToLow();
         softAssert.assertTrue(inventoryPage.isSortedByPriceDescending(), "Price high to low failed");
 
-        inventoryPage.chooseAnOption("Name (A to Z)");
+        sorting.sortByNameAsc();
         softAssert.assertTrue(inventoryPage.isSortedAlphabeticallyAscending(), "Name A to Z failed");
 
         softAssert.assertAll();
