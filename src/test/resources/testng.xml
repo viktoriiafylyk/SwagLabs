@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Swag Labs">
+    <test name="Basic Functionality">
+        <packages>
+            <package name="com.swaglabs.tests.ui" />
+        </packages>
+    </test>
+</suite>
